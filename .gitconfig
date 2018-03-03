@@ -1,0 +1,27 @@
+# This is Git's per-user configuration file.
+[user]
+	email = mturquette@deferred.io
+	name = Michael Turquette
+	signingkey = A23A9C9BC325A4D4!
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[rebase]
+	autosquash = true
+[color]
+	ui = auto
+[core]
+	abbrev = 12
+	preloadindex = true
+	editor = "NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim -c \"set textwidth=72\" -c \"set wrap\" -c \"set spell\" -c \"set nocp\""
+[push]
+	default = simple
+[sendemail]
+	smtpserver = /usr/bin/msmtp
+	suppresscc = all
+[pretty]
+	fixes = Fixes: %h (\"%s\")
+[gpg]
+	program = gpg2
