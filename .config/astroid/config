@@ -11,15 +11,19 @@
             "level": "0"
         }
     },
+    "terminal": {
+        "height": "10",
+        "font_description": "Ubuntu Mono derivative Powerline Normal 13"
+    },
     "thread_index": {
         "page_jump_rows": "6",
         "sort_order": "newest",
         "cell": {
-            "font_description": "default",
+            "font_description": "Ubuntu Mono derivative Powerline Normal 13",
             "line_spacing": "2",
             "date_length": "10",
             "message_count_length": "4",
-            "authors_length": "20",
+            "authors_length": "30",
             "subject_color": "#807d74",
             "subject_color_selected": "#000000",
             "background_color_selected": "",
@@ -40,12 +44,12 @@
         }
     },
     "editor": {
-	"cmd": "vimr --wait --nvim -c 'set ft=mail' -c '+set fileencoding=utf-8' -c '+set ff=unix' -c '+set enc=utf-8' %1",
+        "cmd": "vimr --wait --nvim -c 'set ft=mail' -c 'set fileencoding=utf-8' -c 'set ff=unix' -c 'set enc=utf-8' %1",
         "external_editor": "true",
         "charset": "utf-8",
         "save_draft_on_force_quit": "true",
         "attachment_words": "attach",
-        "attachment_directory": "~/Downloads",
+        "attachment_directory": "~\/Downloads",
         "markdown_processor": "marked"
     },
     "mail": {
@@ -65,7 +69,7 @@
         "format_flowed": "true"
     },
     "poll": {
-        "interval": "60",
+        "interval": "10",
         "always_full_refresh": "false"
     },
     "attachment": {
@@ -92,7 +96,7 @@
         "gpg": {
             "path": "gpg2",
             "always_trust": "true",
-	    "auto_key_retrieve": "true"
+            "auto_key_retrieve": "true"
         }
     },
     "saved_searches": {
@@ -142,7 +146,7 @@
     "startup": {
         "queries": {
             "inbox": "tag:inbox",
-	    "needs-review": "tag:needs-review"
+            "needs-review": "tag:needs-review"
         }
     }
 }

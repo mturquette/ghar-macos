@@ -1,18 +1,8 @@
 set fish_greeting ""
 powerline-daemon
 
-### HEY PLZ ADD AN ALIAS FOR ME KTHX ###
-# exec msmtpq --q-mgmt "$1"
-#ls /usr/local/share/msmtp/scripts/msmtpq/*
-#/usr/local/share/msmtp/scripts/msmtpq/README.msmtpq
-#/usr/local/share/msmtp/scripts/msmtpq/msmtp-queue
-#/usr/local/share/msmtp/scripts/msmtpq/msmtpq
-
-### HEY ALSO ADD ME ###
-# /usr/local/share/git-core/contrib/git-jump/git-jump
-
 ## path
-set -gx PATH $PATH $HOME/src/ghar/bin $HOME/src/gmailieer/
+set -gx PATH $PATH $HOME/src/ghar/bin $HOME/src/gmailieer/ /usr/local/share/msmtp/scripts/msmtpq/ /usr/local/share/git-core/contrib/git-jump/
 
 ## GPG and SSH agent configuration
 
