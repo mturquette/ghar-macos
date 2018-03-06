@@ -9,6 +9,4 @@ set -q XDG_DATA_HOME
 # Load oh-my-fish configuration.
 source $OMF_PATH/init.fish
 
-# typo? fuck
-eval (thefuck --alias | tr '\n' ';')
-#set -g fish_user_paths "/usr/local/opt/gnupg@2.1/bin" $fish_user_paths
+thefuck --alias | source
