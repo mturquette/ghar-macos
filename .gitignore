@@ -8,4 +8,4 @@
 .ssh/korg-mturquette
 .ssh/authorized_keys
 .config/astroid/searches
-.config/fish/fishd.d*
+.config/fish/fishd*
