@@ -9,3 +9,4 @@
 .ssh/authorized_keys
 .config/astroid/searches
 .config/fish/fishd*
+.config/git/ignore
