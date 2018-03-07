@@ -2,7 +2,7 @@ set fish_greeting ""
 powerline-daemon
 
 ## path
-set -gx PATH $PATH $HOME/src/ghar/bin $HOME/src/gmailieer/ /usr/local/share/msmtp/scripts/msmtpq/ /usr/local/share/git-core/contrib/git-jump/
+set -gx PATH $PATH $HOME/src/ghar/bin $HOME/src/gmailieer /usr/local/share/msmtp/scripts/msmtpq /usr/local/share/git-core/contrib/git-jump
 
 ## GPG and SSH agent configuration
 
