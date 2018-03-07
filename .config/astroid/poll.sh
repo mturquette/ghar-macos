@@ -5,4 +5,4 @@
 # https://github.com/fish-shell/fish-shell/issues/805
 
 cd ~/.mail/baylibre/
-and gmi pull
+and gmi sync
