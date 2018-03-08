@@ -70,7 +70,7 @@
         "format_flowed": "true"
     },
     "poll": {
-        "interval": "10",
+        "interval": "600",
         "always_full_refresh": "false"
     },
     "attachment": {
