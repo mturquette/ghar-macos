@@ -70,7 +70,7 @@ end
 
 # alot: apply patches to Linux
 function alot
-	cd ~/src/linux ; /usr/local/bin/alot
+	cd /Volumes/Workspace/linux; and /usr/local/bin/alot
 end
 
 # alias vim to nvim
