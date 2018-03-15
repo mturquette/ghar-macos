@@ -1,0 +1,65 @@
+#!/bin/bash
+
+## Expects an email message-id via STDIN. Note that alot strips the
+## chevrons (< and >) from the message-id
+
+usage() { echo "Usage: $0 [-s <\"Under Review\",\"Accepted\",\"Rejected\",...>] " 1>&2; exit 1; }
+
+## Patchworks states
+# New
+# Under Review
+# Accepted
+# Rejected
+# RFC
+# Not Applicable
+# Changes Requested
+# Awaiting Upstream
+# Superseded
+# Deferred
+
+## Currently only supporting the ones in the case statement below:
+
+while getopts ":s:" opt; do
+	case "${opt}" in
+		s)
+			state=${OPTARG}
+		case "$state" in
+			"Under Review")
+			;;
+		"Accepted")
+			;;
+		"Rejected")
+			;;
+		"Not Applicable")
+			;;
+		"Changes Requested")
+			;;
+		"Superseded")
+			;;
+		"Deferred")
+			;;
+		"*")
+			echo "dang bruh bad state: $state"
+			;;
+		esac
+			;;
+		*)
+			usage
+			;;
+	esac
+done
+shift $((OPTIND-1)) # maybe I'll add more options some day?
+
+## Done parsing options and validating input. Now search patchwork for the
+## patch id based on the email message-id and then update state
+
+## Add the chevrons back to the message-id, since patchwork expects them
+msgid="<$(cat)>"
+
+## FIXME add error handling if we don't find an id
+id=$(~/.config/alot/hooks/pwclient list -m $msgid -f "%{id}")
+
+## FIXME add error handling if update fails for whatever reason. Maybe timeout?
+~/.config/alot/hooks/pwclient update -s "$state" "$id"
+
+exit 0
