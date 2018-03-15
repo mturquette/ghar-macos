@@ -66,8 +66,8 @@
         "message_id_user": "",
         "user_agent": "default",
         "send_delay": "2",
-        "close_on_success": "false",
-        "format_flowed": "true"
+        "format_flowed": "true",
+        "close_on_success": "false"
     },
     "poll": {
         "interval": "600",
@@ -80,7 +80,7 @@
         "open_html_part_external": "false",
         "open_external_link": "xdg-open",
         "default_save_directory": "~",
-        "indent_messages": "false",
+        "indent_messages": "true",
         "code_prettify": {
             "enable": "true",
             "for_tags": "",
