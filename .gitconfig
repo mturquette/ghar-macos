@@ -26,3 +26,5 @@
 	fixes = Fixes: %h (\"%s\")
 [gpg]
 	program = gpg2
+[credential]
+	helper = osxkeychain
