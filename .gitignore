@@ -10,3 +10,4 @@
 .config/astroid/searches
 .config/fish/fishd*
 .config/git/ignore
+.pwclientrc
