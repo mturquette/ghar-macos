@@ -70,7 +70,7 @@
         "close_on_success": "false"
     },
     "poll": {
-        "interval": "600",
+        "interval": "1800",
         "always_full_refresh": "false"
     },
     "attachment": {
@@ -146,6 +146,7 @@
     },
     "startup": {
         "queries": {
+	    "patchwork": "(tag:pw/new or tag:\"pw/under review\") and not tag:pw/archive",
             "inbox": "tag:inbox",
             "needs-review": "tag:needs-review"
         }

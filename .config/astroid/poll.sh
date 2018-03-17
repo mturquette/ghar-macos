@@ -5,4 +5,6 @@
 # https://github.com/fish-shell/fish-shell/issues/805
 
 cd ~/.mail/baylibre/
-and gmi sync
+and gmi pull
+and ~/.config/alot/hooks/fetch-pw-states-update-notmuch-tags.fish
+and gmi push
