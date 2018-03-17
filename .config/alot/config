@@ -29,7 +29,8 @@ tabwidth = 4
 # initial command when none is given as argument:
 #initial_command = 'search tag:inbox and tag:unread ; search tag:linux-clk and tag:unread ; search tag:flagged'
 #initial_command = 'search tag:inbox and tag:unread ; search tag:linux-clk and tag:unread'
-initial_command = 'search tag:inbox ; search tag:needs-review'
+#initial_command = 'search tag:inbox ; search tag:needs-review ; search (tag:pw/new or tag:"pw/under review") and not tag:pw/archive'
+initial_command = 'search (tag:pw/new or tag:"pw/under review") and not tag:pw/archive'
 
 # in case more than one account has an address book:
 # Set this to True to make tab completion for recipients during compose only
@@ -84,7 +85,25 @@ c = compose
 		| = "pipeto 'git am -s3' ; pipeto --format=id '~/.config/alot/hooks/add-link-tag-to-patch'"
 
 		# Set state to Under Review in patchwork
-		pwu = "pipeto --format=id '~/.config/alot/hooks/pw-set-state -u'"
+		p u = "pipeto --background --format=id '~/.config/alot/hooks/set-pw-patch-state.fish Under Review'"
+		# Set state to Accepted in patchwork
+		p a = "pipeto --format=id '~/.config/alot/hooks/set-pw-patch-state.fish Accepted'"
+		# Set state to Rejected in patchwork
+		p r = "pipeto --format=id '~/.config/alot/hooks/set-pw-patch-state.fish Rejected'"
+		# Set state to Not Applicable in patchwork
+		p n = "pipeto --background --format=id '~/.config/alot/hooks/set-pw-patch-state.fish New'"
+		# Set state to Changes Requested in patchwork
+		p c = "pipeto --format=id '~/.config/alot/hooks/set-pw-patch-state.fish Changes Requested'"
+		# Set state to Awaiting Upstream in patchwork
+		p w = "pipeto --format=id '~/.config/alot/hooks/set-pw-patch-state.fish Awaiting Upstream'"
+		# Set state to Superseded in patchwork
+		p s = "pipeto --format=id '~/.config/alot/hooks/set-pw-patch-state.fish Superseded'"
+		# Set state to Deferred in patchwork
+		p d = "pipeto --format=id '~/.config/alot/hooks/set-pw-patch-state.fish Deferred'"
+
+		# Fetch a patch from patchwork and apply it to git tree
+		# Note: applies SoB and a Link: tags to the commit log
+		p g = "pipeto --format=id ~/.config/alot/hooks/apply-pw-patch.fish"
 
 [accounts]
 	[[baylibre]]
@@ -94,7 +113,7 @@ c = compose
 		sendmail_command = msmtpq -a baylibre -t
 		#sendmail_command = msmtp -a baylibre -t
 		#sent_box = maildir:///home/mturquette/mail/linaro
-		draft_box = maildir:///Users/mturquette/mail/baylibre/drafts
+		#draft_box = maildir:///Users/mturquette/mail/baylibre/drafts
 
 	# see,
 	# http://alot.readthedocs.org/en/latest/configuration/contacts_completion.html
