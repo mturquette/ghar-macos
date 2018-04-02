@@ -98,6 +98,12 @@ function em
 	emacs -nw
 end
 
+# ps, grep, kill - pkill & killall suck on macos, so use this function to kill
+# process that match the substring argument
+function pgk
+	ps -A -ww | grep [^]]$argv | awk '{print $1}' | xargs kill
+end
+
 ## make functions
 
 # make, with 2 threads per cpu
