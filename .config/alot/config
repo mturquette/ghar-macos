@@ -1,5 +1,5 @@
 # directory prefix for downloading attachments
-attachment_prefix = '~/Dropbox/Downloads'
+attachment_prefix = '~/Downloads'
 
 # number of colours to use
 colourmode = 256
@@ -30,7 +30,7 @@ tabwidth = 4
 #initial_command = 'search tag:inbox and tag:unread ; search tag:linux-clk and tag:unread ; search tag:flagged'
 #initial_command = 'search tag:inbox and tag:unread ; search tag:linux-clk and tag:unread'
 #initial_command = 'search tag:inbox ; search tag:needs-review ; search (tag:pw/new or tag:"pw/under review") and not tag:pw/archive'
-initial_command = 'search (tag:pw/new or tag:"pw/under review") and not tag:pw/archive'
+initial_command = 'search tag:inbox ; search (tag:pw/new or tag:"pw/under review") and not tag:pw/archive'
 
 # in case more than one account has an address book:
 # Set this to True to make tab completion for recipients during compose only
@@ -137,12 +137,12 @@ c = compose
 	normal = 'bold','','dark cyan,bold','','#aaa',''
 
 	[[flagged]]
-		translated = ★
+		translated = 🚩
 		normal = '','','light red','','light red',''
 		focus = '','','light red','','light red',''
 
 	[[unread]]
-		translated = ✉
+		translated = 📩
 		normal = '','','dark blue','','dark blue',''
 		focus = '','','dark blue','','dark blue',''
 
@@ -152,27 +152,27 @@ c = compose
 		focus = '','','dark green','','dark green',''
 
 	[[signed]]
-		translated = ⚷
+		translated = 🔑
 		normal = '','','light red','','light red',''
 		focus = '','','light red','','light red',''
 
 	[[killed]]
-		translated = ✝
+		translated = ☠
 		normal = '','','light red','','light red',''
 		focus = '','','light red','','light red',''
 
 	[[attachment]]
-		translated = ✂
+		translated = ✄
 		normal = '','','light magenta','','light magenta',''
 		focus = '','','light magenta','','light magenta',''
 
 	[[inbox]]
-		translated = '~'
+		translated = 📥
 		normal = '','','dark blue','','dark blue',''
 		focus = '','','dark blue','','dark blue',''
 
 	[[sent]]
-		translated = ➥
+		translated = ⏎
 		normal = '','','dark green','','dark green',''
 		focus = '','','dark green','','dark green',''
 
