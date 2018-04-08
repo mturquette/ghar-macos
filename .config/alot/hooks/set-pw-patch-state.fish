@@ -9,24 +9,34 @@ set state $argv
 switch $state
 	case 'New'
 		set tag 'pw/new'
+		set review '+needs-review'
 	case 'Under Review'
 		set tag 'pw/under review'
+		set review '+needs-review'
 	case 'Accepted'
 		set tag 'pw/accepted'
+		set review '-needs-review'
 	case 'Rejected'
 		set tag 'pw/rejected'
+		set review '-needs-review'
 	case 'RFC'
 		set tag 'pw/rfc'
+		set review '-needs-review'
 	case 'Not Applicable'
 		set tag 'pw/not applicable'
+		set review '-needs-review'
 	case 'Changes Requested'
 		set tag 'pw/changes requested'
+		set review '-needs-review'
 	case 'Awaiting Upstream'
 		set tag 'pw/awaiting upstream'
+		set review '-needs-review'
 	case 'Superseded'
 		set tag 'pw/superseded'
+		set review '-needs-review'
 	case 'Deferred'
 		set tag 'pw/deferred'
+		set review '-needs-review'
 end
 
 # change into same directory as this script
@@ -38,9 +48,9 @@ set old_state (notmuch search --output=tags id:$msgid | grep "^pw/")
 # update local notmuch tag
 # this is sugar; we always overwrite local tags when syncing patwork state
 if [ "$old_state" = '' ]
-	notmuch tag +$tag -- id:$msgid
+	notmuch tag +$tag $review -- id:$msgid
 else if [ "$old_state" != "$tag" ]
-	notmuch tag -$old_state +$tag -- id:$msgid
+	notmuch tag -$old_state +$tag $review -- id:$msgid
 end
 
 # derive patchwork id from message-id
