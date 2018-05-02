@@ -104,6 +104,11 @@ function pgk
 	ps -A -ww | grep [^]]$argv | awk '{print $1}' | xargs kill
 end
 
+# attach to existing tmux 'dev' sessions, otherwise start new session
+function tm
+	tmux ls ; and tmux at -t dev ; or tmux new -s dev
+end
+
 ## make functions
 
 # make, with 2 threads per cpu
