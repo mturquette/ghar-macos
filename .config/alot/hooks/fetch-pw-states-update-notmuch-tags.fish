@@ -25,7 +25,7 @@ for patch in (./pwclient list -a no -f '%{id} %{msgid} %{state}')
 			set review '-needs-review'
 		case '*RFC'
 			set tag 'pw/rfc'
-			set review '-needs-review'
+			set review '+needs-review'
 		case '*Not Applicable'
 			set tag 'pw/not applicable'
 			set review '-needs-review'

@@ -1,8 +1,4 @@
 #!/bin/bash
 
-# | = "pipeto --format=id 'msgid=$(cat) && git filter-branch -f --msg-filter "cat - && echo \"Link: lkml.kernel.org/r/$msgid\"" HEAD^..HEAD'"
-
-#| = "pipeto 'git am -s3' ; pipeto --format=id 'read -l msgid; git filter-branch -f --msg-filter \"cat && echo Link: lkml.kernel.org/r/$msgid\" HEAD^..HEAD'"
-
 msgid=$(cat)
 git filter-branch -f --msg-filter "cat - && echo 'Link: lkml.kernel.org/r/$msgid'" HEAD^..HEAD

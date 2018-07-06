@@ -42,7 +42,7 @@ quit_on_last_bclose = True
 
 # editor command
 # if unset, alot will first try the :envvar:`EDITOR` env variable, then :file:`/usr/bin/editor`
-editor_cmd = 'vim -c "set textwidth=72" -c "set wrap" -c "set spell" -c "set nocp"'
+editor_cmd = '/usr/local/bin/nvim -c "set textwidth=72" -c "set wrap" -c "set spell" -c "set nocp"'
 
 [bindings]
 g i = 'search tag:inbox and tag:unread'
@@ -61,11 +61,11 @@ c = compose
 		! =
 		s = toggletags flagged
 		m =
-		e = toggletags inbox
+		e = toggletags inbox ; move up
 		I = toggletags unread
 		#I = untag unread
 		U = tag unread
-		& = toggletags needs-review
+		& = toggletags needs-review ; move up
 		- = untag important
 		+ = tag important
 

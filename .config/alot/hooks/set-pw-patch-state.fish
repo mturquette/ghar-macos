@@ -6,7 +6,7 @@ read msgid
 # get patch state from cmdline
 set state $argv
 
-switch $state
+switch "$state"
 	case 'New'
 		set tag 'pw/new'
 		set review '+needs-review'
@@ -58,4 +58,4 @@ set id (./pwclient list -a no -f '%{id} %{msgid} %{state}' -m "<$msgid>" | cut -
 
 # update patchwork state
 #eval $pwpath/pwclient update -s "'$state'" $id
-./pwclient update -s $state $id
+./pwclient update -s "$state" $id
