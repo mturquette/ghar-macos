@@ -1,0 +1,7 @@
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+
+# fetch gmail, update notmuch tags, sync patchwork state, update gmail labels
+*/30 * * * *  ~/.config/alot/hooks/cron.sh
+
+# backup notmuch database every afternoon
+0 16 * * * ~/.config/alot/hooks/bkup.sh
