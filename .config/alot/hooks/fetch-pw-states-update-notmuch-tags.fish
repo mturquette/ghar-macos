@@ -13,45 +13,34 @@ for patch in (./pwclient list -a no -f '%{id} %{msgid} %{state}')
 	switch $patch
 		case '*New'
 			set tag 'pw/new'
-			set review '+needs-review'
 		case '*Under Review'
 			set tag 'pw/under review'
-			set review '+needs-review'
 		case '*Accepted'
 			set tag 'pw/accepted'
-			set review '-needs-review'
 		case '*Rejected'
 			set tag 'pw/rejected'
-			set review '-needs-review'
 		case '*RFC'
 			set tag 'pw/rfc'
-			set review '+needs-review'
 		case '*Not Applicable'
 			set tag 'pw/not applicable'
-			set review '-needs-review'
 		case '*Changes Requested'
 			set tag 'pw/changes requested'
-			set review '-needs-review'
 		case '*Awaiting Upstream'
 			set tag 'pw/awaiting upstream'
-			set review '-needs-review'
 		case '*Superseded'
 			set tag 'pw/superseded'
-			set review '-needs-review'
 		case '*Deferred'
 			set tag 'pw/deferred'
-			set review '-needs-review'
 	end
 
-	# now that we have the new tag, we must first remove any old pw state
-	# assumption: each message can only have one patchwork state tag applied
 	set old_state (notmuch search --output=tags id:$msgid | grep "^pw/")
-	#set old_state_tag '"'$old_state'"'
 
 	if [ "$old_state" = '' ]
 		notmuch tag +$tag $review -"pw/archived" -- id:$msgid
+		notmuch tag +pw-clk (notmuch search --output=threads id:$msgid)"
 	else if [ "$old_state" != "$tag" ]
 		notmuch tag -$old_state +$tag $review -"pw/archived" -- id:$msgid
+		notmuch tag +pw-clk (notmuch search --output=threads id:$msgid)"
 	end
 
 end
@@ -91,9 +80,11 @@ for patch in (./pwclient list -a yes -f '%{id} %{msgid} %{state}')
 	set old_state (notmuch search --output=tags id:$msgid | grep "^pw/")
 
 	if [ "$old_state" = '' ]
-		notmuch tag +$tag -needs-review +"pw/archived" -- id:$msgid
+		notmuch tag +$tag +"pw/archived" -- id:$msgid
+		notmuch tag +pw-clk (notmuch search --output=threads id:$msgid)"
 	else if [ "$old_state" != "$tag" ]
-		notmuch tag -$old_state +$tag -needs-review +"pw/archived" -- id:$msgid
+		notmuch tag -$old_state +$tag +"pw/archived" -- id:$msgid
+		notmuch tag +pw-clk (notmuch search --output=threads id:$msgid)"
 	end
 end
 

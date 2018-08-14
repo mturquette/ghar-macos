@@ -30,7 +30,8 @@ tabwidth = 4
 #initial_command = 'search tag:inbox and tag:unread ; search tag:linux-clk and tag:unread ; search tag:flagged'
 #initial_command = 'search tag:inbox and tag:unread ; search tag:linux-clk and tag:unread'
 #initial_command = 'search tag:inbox ; search tag:needs-review ; search (tag:pw/new or tag:"pw/under review") and not tag:pw/archive'
-initial_command = 'search tag:inbox ; search (tag:pw/new or tag:"pw/under review") and not tag:pw/archive'
+#initial_command = 'search tag:inbox ; search (tag:pw/new or tag:"pw/under review") and not tag:pw/archive ; search tag:linux-clk and not tag:pw-clk'
+initial_command = 'search tag:inbox ; search (tag:pw/new or tag:"pw/under review") and not tag:pw/archive ; search tag:needs-review'
 
 # in case more than one account has an address book:
 # Set this to True to make tab completion for recipients during compose only

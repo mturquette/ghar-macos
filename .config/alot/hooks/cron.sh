@@ -13,6 +13,7 @@ gmi pull >> /tmp/gmailieer_patchwork_notmuch.log 2>&1
 
 date >> /tmp/gmailieer_patchwork_notmuch.log
 fetch-pw-states-update-notmuch-tags.fish >> /tmp/gmailieer_patchwork_notmuch.log 2>&1
+notmuch tag +needs-review -- tag:new and tag:linux-clk and not tag:pw-clk
 
 date >> /tmp/gmailieer_patchwork_notmuch.log
 gmi push >> /tmp/gmailieer_patchwork_notmuch.log 2>&1
