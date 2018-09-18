@@ -182,8 +182,3 @@ c = compose
 
 	[[to-me]]
 		translated = "☺"
-
-
-#	[[.*]]
-		#translated = ''
-#		normal = '','','','','',''

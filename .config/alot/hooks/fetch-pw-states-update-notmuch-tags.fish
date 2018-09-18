@@ -3,7 +3,7 @@
 # change into same directory as this script
 cd (dirname (status filename))
 
-# iterate through unarchived patches, syncing patchwork state as notmuch tags
+# iterate through unarchived patches, syncing patch status as a notmuch tag
 for patch in (./pwclient list -a no -f '%{id} %{msgid} %{state}')
 	# parse patchwork id and msgid and save them
 	set id (echo $patch | cut -d' ' -f1)
@@ -33,20 +33,29 @@ for patch in (./pwclient list -a no -f '%{id} %{msgid} %{state}')
 			set tag 'pw/deferred'
 	end
 
+	# sometimes we hit msgid's that patchwork knows about, but notmuch does
+	# not, for whatever reason. skip these msgid's and continue the loop if
+	# this happens.
+	set thread (notmuch search --output=threads id:$msgid)
+	if [ "$thread" = '' ]
+		continue
+	end
+
 	set old_state (notmuch search --output=tags id:$msgid | grep "^pw/")
 
 	if [ "$old_state" = '' ]
-		notmuch tag +$tag $review -"pw/archived" -- id:$msgid
-		notmuch tag +pw-clk (notmuch search --output=threads id:$msgid)"
+		notmuch tag +$tag -"pw/archived" -- id:$msgid
+		notmuch tag +pw-clk -needs-review -- $thread
+		#notmuch tag +pw-clk -- thread:(notmuch search --output=threads id:"$msgid" | sed s/thread://)
 	else if [ "$old_state" != "$tag" ]
-		notmuch tag -$old_state +$tag $review -"pw/archived" -- id:$msgid
-		notmuch tag +pw-clk (notmuch search --output=threads id:$msgid)"
+		notmuch tag -$old_state +$tag -"pw/archived" -- id:$msgid
+		notmuch tag +pw-clk -needs-review -- $thread
 	end
 
 end
 
-# iterate through archived patches, marking with the pw/archived tag
-# i guess we could sync final pw state here but who cares...
+# iterate through archived patches, syncing patch status as a notmuch tag as
+# well as tagging the message as pw/archived
 for patch in (./pwclient list -a yes -f '%{id} %{msgid} %{state}')
 	# parse patchwork id and msgid and save them
 	set id (echo $patch | cut -d' ' -f1)
@@ -77,14 +86,22 @@ for patch in (./pwclient list -a yes -f '%{id} %{msgid} %{state}')
 			set tag 'pw/deferred'
 	end
 
+	# sometimes we hit msgid's that patchwork knows about, but notmuch does
+	# not, for whatever reason. skip these msgid's and continue the loop if
+	# this happens.
+	set thread (notmuch search --output=threads id:$msgid)
+	if [ "$thread" = '' ]
+		continue
+	end
+
 	set old_state (notmuch search --output=tags id:$msgid | grep "^pw/")
 
 	if [ "$old_state" = '' ]
 		notmuch tag +$tag +"pw/archived" -- id:$msgid
-		notmuch tag +pw-clk (notmuch search --output=threads id:$msgid)"
+		notmuch tag +pw-clk -- $thread
 	else if [ "$old_state" != "$tag" ]
 		notmuch tag -$old_state +$tag +"pw/archived" -- id:$msgid
-		notmuch tag +pw-clk (notmuch search --output=threads id:$msgid)"
+		notmuch tag +pw-clk -- $thread
 	end
 end
 
