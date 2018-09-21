@@ -8,5 +8,3 @@ set -q XDG_DATA_HOME
 
 # Load oh-my-fish configuration.
 source $OMF_PATH/init.fish
-
-thefuck --alias | source
