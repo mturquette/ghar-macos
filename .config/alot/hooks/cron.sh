@@ -11,15 +11,17 @@ echo $PATH >> /tmp/gmailieer_patchwork_notmuch.log
 #set -e
 cd ~/.mail/baylibre/
 
-and date >> /tmp/gmailieer_patchwork_notmuch.log
+date >> /tmp/gmailieer_patchwork_notmuch.log
 gmi pull >> /tmp/gmailieer_patchwork_notmuch.log 2>&1
+set ret $status; if test $ret -ne 0; exit $ret; end
 
 # fetch patwork patch status and convert into notmuch tags
-and date >> /tmp/gmailieer_patchwork_notmuch.log
+date >> /tmp/gmailieer_patchwork_notmuch.log
 fetch-pw-states-update-notmuch-tags.fish >> /tmp/gmailieer_patchwork_notmuch.log 2>&1
+set ret $status; if test $ret -ne 0; exit $ret; end
 
 # tag whole thread with pw-clk if a single message has that tag
-and date >> /tmp/gmailieer_patchwork_notmuch.log
+date >> /tmp/gmailieer_patchwork_notmuch.log
 for thread in (notmuch search --output=threads tag:new);
 	if notmuch search --output=tags $thread | grep pw-clk
 		echo "found pw-clk in $thread" >> /tmp/gmailieer_patchwork_notmuch.log 2>&1
@@ -34,5 +36,6 @@ end
 
 date >> /tmp/gmailieer_patchwork_notmuch.log
 gmi push >> /tmp/gmailieer_patchwork_notmuch.log 2>&1
+set ret $status; if test $ret -ne 0; exit $ret; end
 
 notmuch tag -new -- tag:new >> /tmp/gmailieer_patchwork_notmuch.log 2>&1
