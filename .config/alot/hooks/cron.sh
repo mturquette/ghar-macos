@@ -3,10 +3,8 @@
 echo >> /tmp/gmailieer_patchwork_notmuch.log
 echo >> /tmp/gmailieer_patchwork_notmuch.log
 
-echo $PATH >> /tmp/gmailieer_patchwork_notmuch.log
-#set PATH ~/.config/alot/hooks:~/src/gmailieer:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
-set PATH ~/.config/alot/hooks ~/src/gmailieer $PATH
-echo $PATH >> /tmp/gmailieer_patchwork_notmuch.log
+set PATH ~/.config/alot/hooks $PATH
+#set PATH ~/.config/alot/hooks ~/src/gmailieer $PATH
 
 #set -e
 cd ~/.mail/baylibre/
@@ -23,7 +21,7 @@ set ret $status; if test $ret -ne 0; exit $ret; end
 # tag whole thread with pw-clk if a single message has that tag
 date >> /tmp/gmailieer_patchwork_notmuch.log
 for thread in (notmuch search --output=threads tag:new);
-	if notmuch search --output=tags $thread | grep pw-clk
+	if notmuch search --output=tags $thread | grep pw-clk > /dev/null
 		echo "found pw-clk in $thread" >> /tmp/gmailieer_patchwork_notmuch.log 2>&1
 		notmuch tag +pw-clk -- $thread
 	else
