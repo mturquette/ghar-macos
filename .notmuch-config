@@ -90,7 +90,7 @@ synchronize_flags=true
 #
 
 [search]
-exclude_tags=
+exclude_tags=archived-ti;archived-linaro
 
 # Cryptography related configuration
 #
